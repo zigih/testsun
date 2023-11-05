@@ -1,0 +1,44 @@
+/**
+ * Generates a QR code using the given data and options.
+ *
+ * @param {string} data - The data to be encoded in the QR code.
+ * @param {object} options - The options for generating the QR code.
+ * @param {number} options.size - The size of the QR code in pixels. Default is 200.
+ * @param {string} options.color - The color of the QR code. Default is black.
+ * @returns {string} The generated QR code as a string representation.
+ * @throws {Error} If the data is empty or the options are invalid, an error is thrown indicating
+ *                 that the data should not be empty and the options should be valid.
+ *
+ * @example
+ * const qrCode = generateQRCode("Hello, World!", { size: 300, color: "red" });
+ * console.log(qrCode);
+ */
+function generateQRCode(data, options = { size: 200, color: "black" }) {
+    if (data.length === 0) {
+        throw new Error("Data should not be empty.");
+    }
+
+    if (typeof options !== "object" || options === null) {
+        throw new Error("Options should be an object.");
+    }
+
+    const { size, color } = options;
+
+    if (typeof size !== "number" || size <= 0) {
+        throw new Error("Size should be a positive number.");
+    }
+
+    if (typeof color !== "string" || color.length === 0) {
+        throw new Error("Color should be a non-empty string.");
+    }
+
+    // Generate the QR code using a QR code library or API
+    const qrCode = `QR code generated for data: ${data}, size: ${size}, color: ${color}`;
+
+    return qrCode;
+}
+
+// Usage Example
+
+const qrCode = generateQRCode("Hello, World!", { size: 300, color: "red" });
+console.log(qrCode);
